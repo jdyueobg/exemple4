@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>index.html</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #77aaff 3px solid;
+        }
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            list-style: none;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        .post {
+            background: #fff;
+            margin: 20px 0;
+            padding: 20px;
+            border: #ccc 1px solid;
+            border-radius: 5px;
+        }
+        .post img {
+            max-width: 100%;
+            height: auto;
+        }
+        .post div {
+            margin-bottom: 10px;
+        }
+        .post a {
+            color: #333;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+        .post a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Posty</h1>
+            <ul>
+                <li><a href="{{ url_for('post_add') }}">New Post</a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="container">
+        {% for post in posts %}
+        <div class="post">
+            <img src="{{ post.photo_url }}" alt="Post Image">
+            <div><strong>{{ post.name }}</strong></div>
+            <p>{{ post.body }}</p>
+            <div>
+                <a href="{{ url_for('edit', post_id=post.id) }}">Edit</a>
+                <form action="{{ url_for('delete', post_id=post.id) }}" method="POST" style="display:inline;">
+                    <button type="submit">Delete</button>
+                </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

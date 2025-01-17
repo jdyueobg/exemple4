@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Edit Post</title>
+</head>
+<body>
+    <form action="{{ url_for('edit', post_id=post.id) }}" method="POST" enctype="multipart/form-data">
+        <div><input type="file" name="photo" accept="image/*"></div>
+        <div><input type="text" name="name" value="{{ post.name }}" placeholder="Name"></div>
+        <div><input type="text" name="body" value="{{ post.body }}" placeholder="Body"></div>
+        <div><input type="submit" value="Update"></div>
+    </form>
+</body>
+</html>
